@@ -8,13 +8,14 @@ import dash_html_components as html
 import plotly.express as px
 import pandas as pd
 import numpy as np
+from config import api_key
 
 
 
-fundamentals = requests.get("https://www.alphavantage.co/query?function=OVERVIEW&symbol=IBM&apikey=demo")
+fundamentals = requests.get("https://www.alphavantage.co/query?function=OVERVIEW&symbol=ENB&apikey="+api_key)
 fundamentals_dict = fundamentals.json()
 
-daily = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=demo")
+daily = requests.get("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=ENB&apikey="+api_key)
 daily_dict = daily.json()
 
 
@@ -79,11 +80,11 @@ def render_content(tab):
                     html.Tbody([
                         html.Tr([
                          html.Td(['Previous close']),
-                         html.Td([daily_prices.iloc[4,2]])   
+                         html.Td([daily_prices.iloc[3,1]])   
                         ]),
                         html.Tr([
                          html.Td(['Open']),
-                         html.Td([daily_prices.iloc[1,1]])
+                         html.Td([daily_prices.iloc[0,1]])
                         ]),
                         html.Tr([
                             html.Td(['Volume']),
@@ -149,7 +150,7 @@ def render_content(tab):
                     html.Tbody([
                         html.Tr([
                          html.Td(['Dividend per share']),
-                         html.Td([fundamentals_dict['DividendPerShare']])   
+                         html.Td([fundamentals_dict['ForwardAnnualDividendRate']])   
                         ]),
                         html.Tr([
                          html.Td(['Dividend date']),
