@@ -102,25 +102,72 @@ def render_content(tab):
                     html.Tbody([
                         html.Tr([
                          html.Td(['Market Cap']),
-                         html.Td([])   
+                         html.Td([f"{float(fundamentals_dict['MarketCapitalization'])/1000000:.2f} M"])   
                         ]),
                         html.Tr([
-                         html.Td(['Open']),
-                         html.Td([daily_prices.iloc[1,1]])
+                         html.Td(['PE Ratio']),
+                         html.Td([fundamentals_dict['PERatio']])
                         ]),
                         html.Tr([
-                            html.Td(['Volume']),
-                            html.Td([daily_volume[0]])
+                            html.Td(['Book Value']),
+                            html.Td([fundamentals_dict['BookValue']])
                         ]),
                         html.Tr([
-                            html.Td(['Avg. Volume']),
-                            html.Td([np.mean(daily_volume).round()])
+                            html.Td(['EPS']),
+                            html.Td([fundamentals_dict['EPS']])
                         ]),
                         
                     ],style={})
                     ],style={})
             ],style={
                 'paddingLeft':'4em'}),
+            html.Div([
+                html.Table([
+                    html.Tbody([
+                        html.Tr([
+                         html.Td(['Analyst Target Price']),
+                         html.Td([fundamentals_dict['AnalystTargetPrice']])   
+                        ]),
+                        html.Tr([
+                         html.Td(['QuarterlyEarningsYOY']),
+                         html.Td([fundamentals_dict['QuarterlyEarningsGrowthYOY']])
+                        ]),
+                        html.Tr([
+                            html.Td(['QuarterlyRevenueYOY']),
+                            html.Td([fundamentals_dict['QuarterlyRevenueGrowthYOY']])
+                        ]),
+                        html.Tr([
+                            html.Td(['Institution held %']),
+                            html.Td([fundamentals_dict['PercentInstitutions']])
+                        ]),
+                        
+                    ],style={})
+                    ],style={})
+            ],style={
+                'paddingLeft':'4em'}),html.Div([
+                html.Table([
+                    html.Tbody([
+                        html.Tr([
+                         html.Td(['Dividend per share']),
+                         html.Td([fundamentals_dict['DividendPerShare']])   
+                        ]),
+                        html.Tr([
+                         html.Td(['Dividend date']),
+                         html.Td([fundamentals_dict['DividendDate']])
+                        ]),
+                        html.Tr([
+                            html.Td(['Expected dividend date']),
+                            html.Td([fundamentals_dict['ExDividendDate']])
+                        ]),
+                        html.Tr([
+                            html.Td(['Fiscal year end']),
+                            html.Td([fundamentals_dict['FiscalYearEnd']])
+                        ]),
+                        
+                    ],style={})
+                    ],style={})
+            ],style={
+                'paddingLeft':'4em'})
             ],style={
                 'paddingLeft':'6em',
                'display':'flex',
